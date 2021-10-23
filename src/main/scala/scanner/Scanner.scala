@@ -12,7 +12,7 @@ object Scanner {
                                                                source => searchForString(source),
                                                                source => searchForNumber(source),
                                                                source => searchForSyntaxTokens(source))
-
+  //TODO WRITE INPUT READER LIKE A MODULE, SO YOU CAN CHANGE IT AND LET LEXER USE INPUT AS STRING, IO, Whatever
   def scanSource(sourceCode: String): Option[Token] = {
     if (sourceCode.isBlank) {
       Some(Token(TokenType.EOF))
