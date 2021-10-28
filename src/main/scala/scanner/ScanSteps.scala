@@ -4,7 +4,7 @@ import scanner.Lookup.{findRegexByToken, operationsLookup, reservedWordsLookup, 
 import scanner.enumerations.TokenType
 import scanner.models.Token
 
-object SearchSteps {
+object ScanSteps {
 
   def searchForReservedWord(sourceCode: String): Option[Token] = {
     val trimmedSource = sourceCode.trim

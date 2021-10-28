@@ -1,4 +1,4 @@
-package parser
+package parser.models
 
 import parser.enumerations.{ExpressionKind, ExpressionType, StatementKind}
 import scanner.models.Token

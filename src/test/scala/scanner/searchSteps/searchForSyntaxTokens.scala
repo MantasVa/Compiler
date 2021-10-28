@@ -3,7 +3,7 @@ package scanner.searchSteps
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks.{Table, forAll}
 import org.scalatest.prop.TableFor2
-import scanner.SearchSteps.searchForSyntaxTokens
+import scanner.ScanSteps.searchForSyntaxTokens
 import scanner.enumerations.TokenType
 import scanner.models.Token
 

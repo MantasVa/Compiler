@@ -3,7 +3,7 @@ package scanner.searchSteps
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks.{Table, forAll}
 import org.scalatest.prop.{TableFor1, TableFor2}
-import scanner.SearchSteps.searchForReservedWord
+import scanner.ScanSteps.searchForReservedWord
 import scanner.enumerations.TokenType
 import scanner.models.Token
 
