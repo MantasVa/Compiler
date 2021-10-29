@@ -33,21 +33,21 @@ object ScanSteps {
 
   def searchForIdentifier(sourceCode: String): Option[Token] = {
     val trimmedSource = sourceCode.trim
-    val idTokenType = TokenType.ID
+    val idTokenType = TokenType.Id
     val identifierOption = findRegexByToken(idTokenType).findPrefixOf(trimmedSource)
     identifierOption.map(value => Token(idTokenType, value))
   }
 
   def searchForString(sourceCode: String): Option[Token] = {
     val trimmedSource = sourceCode.trim
-    val stringTokenType = TokenType.STRING
+    val stringTokenType = TokenType.String
     val stringOption = findRegexByToken(stringTokenType).findPrefixOf(trimmedSource)
     stringOption.map(value => Token(stringTokenType, value.replace("\"", "")))
   }
 
   def searchForNumber(sourceCode: String): Option[Token] = {
     val trimmedSource = sourceCode.trim
-    val numTokenType = TokenType.NUM
+    val numTokenType = TokenType.Num
     val identifierOption = findRegexByToken(numTokenType).findPrefixOf(trimmedSource)
     identifierOption.map(value => Token(numTokenType, value))
   }

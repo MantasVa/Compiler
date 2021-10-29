@@ -12,13 +12,13 @@ class searchForOperationTests extends AnyFunSuite{
   val scanCode: TableFor2[String, Token] =
     Table(
       ("SourceCode", "ExpectedToken"),
-      ("  ==5", Token(TokenType.OP_EQUAL)),
-      ("= 10", Token(TokenType.OP_ASSIGN)),
-      ("< 10", Token(TokenType.OP_LESSTHAN)),
-      ("> 10", Token(TokenType.OP_MORETHAN)),
-      ("+ 10", Token(TokenType.OP_PLUS)),
-      ("   + 10", Token(TokenType.OP_PLUS)),
-      ("- 10", Token(TokenType.OP_MINUS)),
+      ("  ==5", Token(TokenType.Op_Equal)),
+      ("= 10", Token(TokenType.Op_Assign)),
+      ("< 10", Token(TokenType.Op_LessThan)),
+      ("> 10", Token(TokenType.Op_MoreThan)),
+      ("+ 10", Token(TokenType.Op_Plus)),
+      ("   + 10", Token(TokenType.Op_Plus)),
+      ("- 10", Token(TokenType.Op_Minus)),
     )
 
   test("Correct token is returned with correct source code") {

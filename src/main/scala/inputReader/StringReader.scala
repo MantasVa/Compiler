@@ -10,7 +10,7 @@ case class StringReader(private var sourceCode: String) extends Readable {
   override def consume(count: Int): Option[String] = {
     if (sourceCode.length >= count) {
       val consumedSource = sourceCode.take(count)
-      sourceCode = sourceCode.splitAt(count)._2
+      sourceCode = sourceCode.splitAt(count)._2 
 
       Some(consumedSource)
     } else {

@@ -1,6 +1,6 @@
 import scanner.enumerations.TokenType
 
-TokenType.ELSE.toString.length
+TokenType.Else.toString.length
 
 
 "$".r.findPrefixOf("")

@@ -13,12 +13,12 @@ class lookupTests extends AnyFunSuite {
   val scanCode: TableFor3[String, Int, Vector[Token]] =
     Table(
       ("SourceCode", "ScanCount", "ExpectedTokens"),
-      ("      ", 100, Vector[Token](Token(TokenType.EOF))),
-      ("      ", 1, Vector[Token](Token(TokenType.EOF))),
-      ("  x = 5", 100, Vector(Token(TokenType.ID, "x"), Token(TokenType.OP_ASSIGN), Token(TokenType.NUM, "5"), Token(TokenType.EOF))),
-      ("  x = 5", 1, Vector(Token(TokenType.ID, "x"))),
-      (" x = \"Hello world\";", 100, Vector(Token(TokenType.ID, "x"), Token(TokenType.OP_ASSIGN), Token(TokenType.STRING, "Hello world"), Token(TokenType.SEMICOLON), Token(TokenType.EOF))),
-      (" x = \"Hello world\";", 3, Vector(Token(TokenType.ID, "x"), Token(TokenType.OP_ASSIGN), Token(TokenType.STRING, "Hello world")))
+      ("      ", 100, Vector[Token](Token(TokenType.Eof))),
+      ("      ", 1, Vector[Token](Token(TokenType.Eof))),
+      ("  x = 5", 100, Vector(Token(TokenType.Id, "x"), Token(TokenType.Op_Assign), Token(TokenType.Num, "5"), Token(TokenType.Eof))),
+      ("  x = 5", 1, Vector(Token(TokenType.Id, "x"))),
+      (" x = \"Hello world\";", 100, Vector(Token(TokenType.Id, "x"), Token(TokenType.Op_Assign), Token(TokenType.String, "Hello world"), Token(TokenType.Semicolon), Token(TokenType.Eof))),
+      (" x = \"Hello world\";", 3, Vector(Token(TokenType.Id, "x"), Token(TokenType.Op_Assign), Token(TokenType.String, "Hello world")))
     )
 
   test("Correct token sequence is returned after performing token lookup") {
@@ -26,8 +26,8 @@ class lookupTests extends AnyFunSuite {
       val scanner = Scanner(StringReader(sourceCode))
 
       //Doing it twice to make sure, tokens are not consumed
-      assert(scanner.lookup(scanCount) == Some(expectedTokens))
-      assert(scanner.lookup(scanCount) == Some(expectedTokens))
+      assert(scanner.lookup(scanCount).contains(expectedTokens))
+      assert(scanner.lookup(scanCount).contains(expectedTokens))
     }
   }
 }

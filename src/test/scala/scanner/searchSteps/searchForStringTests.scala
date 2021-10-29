@@ -11,7 +11,7 @@ class searchForStringTests extends AnyFunSuite{
   val scanCode: TableFor2[String, Token] =
     Table(
       ("SourceCode", "ExpectedToken"),
-      (" \"Hello world\"", Token(TokenType.STRING, "Hello world")),
+      (" \"Hello world\"", Token(TokenType.String, "Hello world")),
     )
 
   test("Correct token is returned with correct source code") {

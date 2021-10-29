@@ -12,26 +12,26 @@ class searchForReservedWordTests extends AnyFunSuite {
     Table(
       ("SourceCode", "ExpectedToken"),
 
-      ("   if(x==5)", Token(TokenType.IF)),
-      ("   if (x==5)", Token(TokenType.IF)),
-      ("   if  (x==5)", Token(TokenType.IF)),
-      ("if  (x==5)", Token(TokenType.IF)),
+      ("   if(x==5)", Token(TokenType.If)),
+      ("   if (x==5)", Token(TokenType.If)),
+      ("   if  (x==5)", Token(TokenType.If)),
+      ("if  (x==5)", Token(TokenType.If)),
 
-      ("   else(x==5)", Token(TokenType.ELSE)),
-      ("   else (x==5)", Token(TokenType.ELSE)),
-      ("else  (x==5)", Token(TokenType.ELSE)),
+      ("   else(x==5)", Token(TokenType.Else)),
+      ("   else (x==5)", Token(TokenType.Else)),
+      ("else  (x==5)", Token(TokenType.Else)),
 
-      ("   while(x==5)", Token(TokenType.WHILE)),
-      ("   while (x==5)", Token(TokenType.WHILE)),
-      ("while  (x==5)", Token(TokenType.WHILE)),
+      ("   while(x==5)", Token(TokenType.While)),
+      ("   while (x==5)", Token(TokenType.While)),
+      ("while  (x==5)", Token(TokenType.While)),
 
-      ("   read x", Token(TokenType.READ)),
-      ("   read y", Token(TokenType.READ)),
-      ("read  c", Token(TokenType.READ)),
+      ("   read x", Token(TokenType.Read)),
+      ("   read y", Token(TokenType.Read)),
+      ("read  c", Token(TokenType.Read)),
 
-      ("   print x", Token(TokenType.PRINT)),
-      ("   print y", Token(TokenType.PRINT)),
-      ("print  c", Token(TokenType.PRINT)),
+      ("   print x", Token(TokenType.Print)),
+      ("   print y", Token(TokenType.Print)),
+      ("print  c", Token(TokenType.Print)),
     )
 
   test("Correct token is returned with correct source code") {

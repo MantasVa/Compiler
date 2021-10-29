@@ -12,35 +12,35 @@ class getTokenLengthInSourceTests extends AnyFunSuite {
   val scanCode: TableFor2[Token, Int] =
     Table(
       ("Token", "Length"),
-      (Token(TokenType.IF), 2),
-      (Token(TokenType.ELSE), 4),
-      (Token(TokenType.WHILE), 5),
-      (Token(TokenType.READ), 4),
-      (Token(TokenType.PRINT), 5),
+      (Token(TokenType.If), 2),
+      (Token(TokenType.Else), 4),
+      (Token(TokenType.While), 5),
+      (Token(TokenType.Read), 4),
+      (Token(TokenType.Print), 5),
 
-      (Token(TokenType.ID, "_dentif"), 7),
-      (Token(TokenType.ID, "listLength"), 10),
+      (Token(TokenType.Id, "_dentif"), 7),
+      (Token(TokenType.Id, "listLength"), 10),
 
-      (Token(TokenType.NUM, "4555"), 4),
-      (Token(TokenType.NUM, "123456"), 6),
+      (Token(TokenType.Num, "4555"), 4),
+      (Token(TokenType.Num, "123456"), 6),
 
-      (Token(TokenType.OP_EQUAL), 2),
-      (Token(TokenType.OP_ASSIGN), 1),
-      (Token(TokenType.OP_LESSTHAN), 1),
-      (Token(TokenType.OP_MORETHAN), 1),
-      (Token(TokenType.OP_PLUS), 1),
-      (Token(TokenType.OP_PLUS), 1),
-      (Token(TokenType.OP_MINUS), 1),
+      (Token(TokenType.Op_Equal), 2),
+      (Token(TokenType.Op_Assign), 1),
+      (Token(TokenType.Op_LessThan), 1),
+      (Token(TokenType.Op_MoreThan), 1),
+      (Token(TokenType.Op_Plus), 1),
+      (Token(TokenType.Op_Plus), 1),
+      (Token(TokenType.Op_Minus), 1),
 
-      (Token(TokenType.LEFTPAREN), 1),
-      (Token(TokenType.LEFTBRACE), 1),
-      (Token(TokenType.RIGHTBRACE), 1),
-      (Token(TokenType.RIGHTPAREN), 1),
-      (Token(TokenType.COMMA), 1),
-      (Token(TokenType.SEMICOLON), 1),
+      (Token(TokenType.LeftParen), 1),
+      (Token(TokenType.LeftBrace), 1),
+      (Token(TokenType.RightBrace), 1),
+      (Token(TokenType.RightParen), 1),
+      (Token(TokenType.Comma), 1),
+      (Token(TokenType.Semicolon), 1),
 
-      (Token(TokenType.EOF), 0),
-      (Token(TokenType.ERROR), 0)
+      (Token(TokenType.Eof), 0),
+      (Token(TokenType.Error), 0)
     )
 
   test("Correct length of token value is returned for appropriate token") {

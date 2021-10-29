@@ -1,7 +1,7 @@
 package scanner
 
 import scanner.enumerations.TokenType
-import scanner.enumerations.TokenType.{COMMA, ELSE, EOF, ERROR, ID, IF, LEFTBRACE, LEFTPAREN, NUM, OP_ASSIGN, OP_EQUAL, OP_LESSTHAN, OP_MINUS, OP_MORETHAN, OP_PLUS, PRINT, READ, RIGHTBRACE, RIGHTPAREN, SEMICOLON, STRING, WHILE}
+import scanner.enumerations.TokenType.{Comma, Else, Eof, Error, Id, If, LeftBrace, LeftParen, Num, Op_Assign, Op_Equal, Op_LessThan, Op_Minus, Op_MoreThan, Op_Plus, Print, Read, RightBrace, RightParen, Semicolon, String, While}
 import scanner.models.Token
 
 import scala.util.matching.Regex
@@ -12,64 +12,64 @@ object Lookup {
   private val twoChar = 2
 
   val reservedWordsLookup: Map[String, Token] = Map(
-    ("if", Token(TokenType.IF)),
-    ("else", Token(TokenType.ELSE)),
-    ("while", Token(TokenType.WHILE)),
-    ("read", Token(TokenType.READ)),
-    ("print", Token(TokenType.PRINT))
+    ("if", Token(TokenType.If)),
+    ("else", Token(TokenType.Else)),
+    ("while", Token(TokenType.While)),
+    ("read", Token(TokenType.Read)),
+    ("print", Token(TokenType.Print))
   )
 
   val operationsLookup: Map[String, Token] = Map(
-    ("==", Token(TokenType.OP_EQUAL)),
-    ("=", Token(TokenType.OP_ASSIGN)),
-    ("<", Token(TokenType.OP_LESSTHAN)),
-    (">", Token(TokenType.OP_MORETHAN)),
-    ("+", Token(TokenType.OP_PLUS)),
-    ("-", Token(TokenType.OP_MINUS)),
+    ("==", Token(TokenType.Op_Equal)),
+    ("=", Token(TokenType.Op_Assign)),
+    ("<", Token(TokenType.Op_LessThan)),
+    (">", Token(TokenType.Op_MoreThan)),
+    ("+", Token(TokenType.Op_Plus)),
+    ("-", Token(TokenType.Op_Minus)),
   )
 
   val syntaxLookup: Map[String, Token] = Map(
-    ("(", Token(TokenType.LEFTPAREN)),
-    (")", Token(TokenType.RIGHTPAREN)),
-    ("{", Token(TokenType.LEFTBRACE)),
-    ("}", Token(TokenType.RIGHTBRACE)),
-    (",", Token(TokenType.COMMA)),
-    (";", Token(TokenType.SEMICOLON)),
+    ("(", Token(TokenType.LeftParen)),
+    (")", Token(TokenType.RightParen)),
+    ("{", Token(TokenType.LeftBrace)),
+    ("}", Token(TokenType.RightBrace)),
+    (",", Token(TokenType.Comma)),
+    (";", Token(TokenType.Semicolon)),
   )
 
   def getTokenLengthInSource(token: Token): Int = token match {
-    case Token(ID, value) => value.length
-    case Token(NUM, value) => value.length
-    case Token(STRING, value) => value.length + twoChar // adding two " " double quotes that are emitted during scanning
-    case Token(tokenType, _) if tokenType == IF | tokenType == ELSE |
-                                tokenType == WHILE | tokenType == READ |
-                                tokenType == PRINT => tokenType.toString.length
-    case Token(OP_EQUAL, _) => twoChar
-    case Token(OP_ASSIGN, _) | Token(OP_LESSTHAN, _) |
-         Token(OP_MORETHAN, _) | Token(OP_PLUS, _)  |
-         Token(OP_MINUS, _) => oneChar
-    case Token(LEFTPAREN, _) | Token(RIGHTPAREN, _) |
-         Token(LEFTBRACE, _) | Token(RIGHTBRACE, _) |
-         Token(COMMA, _) | Token( SEMICOLON, _) => oneChar
-    case Token(EOF, _) => 0
-    case Token(ERROR, value) => value.length
+    case Token(Id, value) => value.length
+    case Token(Num, value) => value.length
+    case Token(String, value) => value.length + twoChar // adding two " " double quotes that are emitted during scanning
+    case Token(tokenType, _) if tokenType == If | tokenType == Else |
+                                tokenType == While | tokenType == Read |
+                                tokenType == Print => tokenType.toString.length
+    case Token(Op_Equal, _) => twoChar
+    case Token(Op_Assign, _) | Token(Op_LessThan, _) |
+         Token(Op_MoreThan, _) | Token(Op_Plus, _) |
+         Token(Op_Minus, _) => oneChar
+    case Token(LeftParen, _) | Token(RightParen, _) |
+         Token(LeftBrace, _) | Token(RightBrace, _) |
+         Token(Comma, _) | Token( Semicolon, _) => oneChar
+    case Token(Eof, _) => 0
+    case Token(Error, value) => value.length
   }
 
   def findRegexByToken(tokenType: TokenType): Regex = tokenType match {
-    case ID => "[_a-zA-Z][_a-zA-z0-9]*".r
-    case NUM => "[0-9]+".r
-    case STRING => "\"[^\"\\n]*\"".r
-    case OP_EQUAL => "==".r
-    case OP_ASSIGN => "=[^=]".r
-    case OP_LESSTHAN => "<".r
-    case OP_MORETHAN => ">".r
-    case OP_PLUS => "\\+".r
-    case OP_MINUS => "-".r
-    case LEFTPAREN => "\\(".r
-    case RIGHTPAREN => "\\)".r
-    case LEFTBRACE => "\\{".r
-    case RIGHTBRACE => "}".r
-    case COMMA => ",".r
-    case SEMICOLON => ";".r
+    case Id => "[_a-zA-Z][_a-zA-z0-9]*".r
+    case Num => "[0-9]+".r
+    case String => "\"[^\"\\n]*\"".r
+    case Op_Equal => "==".r
+    case Op_Assign => "=[^=]".r
+    case Op_LessThan => "<".r
+    case Op_MoreThan => ">".r
+    case Op_Plus => "\\+".r
+    case Op_Minus => "-".r
+    case LeftParen => "\\(".r
+    case RightParen => "\\)".r
+    case LeftBrace => "\\{".r
+    case RightBrace => "}".r
+    case Comma => ",".r
+    case Semicolon => ";".r
   }
 }

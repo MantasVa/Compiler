@@ -13,8 +13,8 @@ class searchForIdentifierTests extends AnyFunSuite {
     Table(
       ("SourceCode", "ExpectedToken"),
 
-      (" _identif ==5", Token(TokenType.ID, "_identif")),
-      (" myNumber2 = 10", Token(TokenType.ID, "myNumber2")),
+      (" _identif ==5", Token(TokenType.Id, "_identif")),
+      (" myNumber2 = 10", Token(TokenType.Id, "myNumber2")),
     )
 
   test("Correct token is returned with correct source code") {

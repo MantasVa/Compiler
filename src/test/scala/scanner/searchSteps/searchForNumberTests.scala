@@ -11,9 +11,9 @@ class searchForNumberTests extends AnyFunSuite {
   val scanCode: TableFor2[String, Token] =
     Table(
       ("SourceCode", "ExpectedToken"),
-      ("  4114", Token(TokenType.NUM, "4114")),
-      ("1234+22", Token(TokenType.NUM, "1234")),
-      ("759< 10", Token(TokenType.NUM, "759")),
+      ("  4114", Token(TokenType.Num, "4114")),
+      ("1234+22", Token(TokenType.Num, "1234")),
+      ("759< 10", Token(TokenType.Num, "759")),
     )
 
   test("Correct token is returned with correct source code") {

@@ -3,7 +3,7 @@ package scanner
 import inputReader.Readable
 import scanner.ScanSteps._
 import scanner.enumerations.{ScanMode, TokenType}
-import scanner.models.{ScanResult, Token}
+import scanner.models.Token
 
 import scala.annotation.tailrec
 
@@ -27,35 +27,40 @@ case class Scanner(reader: Readable) extends Scannable {
   def scanSourceCode(scanMode: ScanMode, scanCount: Int, readCount: Int): Option[Vector[Token]] = {
     val sourceCodeOption = reader.lookup(readCount)
 
-    sourceCodeOption.flatMap(source => {
+    val tokensOption =
+      sourceCodeOption.flatMap(source => {
       val trimmedSource = source.trim
+      val trimmedBlankSpaceCount = source.length - trimmedSource.length
+
       val matchIterator = tokenSeparationRegex.findAllIn(trimmedSource)
-      val eofReached = source.size < readCount
+      val eofReached = source.length < readCount
 
       if (matchIterator.size > scanCount || eofReached) {
-        val scanResult = getTokens(scanCount, trimmedSource, Vector(), eofReached)
+        val tokens = getTokens(scanCount, trimmedSource, Vector(), eofReached)
 
         if (scanMode == ScanMode.Consume) {
-          val consumeCount = readCount - scanResult.sourceCodeCharsLeft
+          val consumeCount = tokens.map(t => Lookup.getTokenLengthInSource(t)).sum + trimmedBlankSpaceCount
           reader.consume(consumeCount)
         }
-        Some(scanResult.tokens)
+        Some(tokens)
       }
       else {
         scanSourceCode(scanMode, scanCount, getNextReadCount(readCount))
       }
     })
+
+    tokensOption
   }
 
   @tailrec
-  private def getTokens(count: Int, source: String, tokens: Vector[Token], eofReached: Boolean): ScanResult = {
+  private def getTokens(count: Int, source: String, tokens: Vector[Token], eofReached: Boolean): Vector[Token] = {
     val trimmedSource = source.trim
 
-    if (tokens.size == count || (tokens.nonEmpty && tokens.last == Token(TokenType.EOF))) {
-      ScanResult(tokens, source.size)
+    if (tokens.size == count || (tokens.nonEmpty && tokens.last == Token(TokenType.Eof))) {
+      tokens
     }
     else if (eofReached && trimmedSource.isEmpty) {
-      getTokens(count, trimmedSource, tokens :+ Token(TokenType.EOF), eofReached)
+      getTokens(count, trimmedSource, tokens :+ Token(TokenType.Eof), eofReached)
     }
     else {
       val token = scannerSteps.foldLeft(None: Option[Token])((tokenOption, scannerStep) => {
@@ -64,7 +69,7 @@ case class Scanner(reader: Readable) extends Scannable {
         } else {
           scannerStep(trimmedSource)
         }
-      }).getOrElse(Token(TokenType.ERROR))
+      }).getOrElse(Token(TokenType.Error))
 
       val tokenLength = Lookup.getTokenLengthInSource(token)
       getTokens(count, trimmedSource.drop(tokenLength), tokens :+ token, eofReached)

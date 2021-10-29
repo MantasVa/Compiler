@@ -12,12 +12,12 @@ class searchForSyntaxTokens extends AnyFunSuite {
   val scanCode: TableFor2[String, Token] =
     Table(
       ("SourceCode", "ExpectedToken"),
-      ("(x = 10", Token(TokenType.LEFTPAREN)),
-      ("){", Token(TokenType.RIGHTPAREN)),
-      ("{x=5", Token(TokenType.LEFTBRACE)),
-      ("} else {", Token(TokenType.RIGHTBRACE)),
-      (", ", Token(TokenType.COMMA)),
-      (";x ==5", Token(TokenType.SEMICOLON)),
+      ("(x = 10", Token(TokenType.LeftParen)),
+      ("){", Token(TokenType.RightParen)),
+      ("{x=5", Token(TokenType.LeftBrace)),
+      ("} else {", Token(TokenType.RightBrace)),
+      (", ", Token(TokenType.Comma)),
+      (";x ==5", Token(TokenType.Semicolon)),
     )
 
   test("Correct token is returned with correct source code") {
