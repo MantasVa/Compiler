@@ -13,7 +13,7 @@ class searchForOperationTests extends AnyFunSuite{
     Table(
       ("SourceCode", "ExpectedToken"),
       ("  ==5", Token(TokenType.Op_Equal)),
-      ("= 10", Token(TokenType.Op_Assign)),
+      ("= 10", Token(TokenType.Assign)),
       ("< 10", Token(TokenType.Op_LessThan)),
       ("> 10", Token(TokenType.Op_MoreThan)),
       ("+ 10", Token(TokenType.Op_Plus)),

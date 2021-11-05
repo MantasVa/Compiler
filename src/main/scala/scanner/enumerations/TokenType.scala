@@ -4,6 +4,7 @@ sealed trait TokenType
 object TokenType {
   case object If extends TokenType
   case object Else extends TokenType
+  case object Assign extends TokenType
   case object While extends TokenType
   case object Read extends TokenType
   case object Print extends TokenType
@@ -12,7 +13,6 @@ object TokenType {
   case object Num extends TokenType
   case object String extends TokenType
 
-  case object Op_Assign extends TokenType
   case object Op_Equal extends TokenType
   case object Op_LessThan extends TokenType
   case object Op_MoreThan extends TokenType

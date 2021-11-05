@@ -15,10 +15,10 @@ class lookupTests extends AnyFunSuite {
       ("SourceCode", "ScanCount", "ExpectedTokens"),
       ("      ", 100, Vector[Token](Token(TokenType.Eof))),
       ("      ", 1, Vector[Token](Token(TokenType.Eof))),
-      ("  x = 5", 100, Vector(Token(TokenType.Id, "x"), Token(TokenType.Op_Assign), Token(TokenType.Num, "5"), Token(TokenType.Eof))),
+      ("  x = 5", 100, Vector(Token(TokenType.Id, "x"), Token(TokenType.Assign), Token(TokenType.Num, "5"), Token(TokenType.Eof))),
       ("  x = 5", 1, Vector(Token(TokenType.Id, "x"))),
-      (" x = \"Hello world\";", 100, Vector(Token(TokenType.Id, "x"), Token(TokenType.Op_Assign), Token(TokenType.String, "Hello world"), Token(TokenType.Semicolon), Token(TokenType.Eof))),
-      (" x = \"Hello world\";", 3, Vector(Token(TokenType.Id, "x"), Token(TokenType.Op_Assign), Token(TokenType.String, "Hello world")))
+      (" x = \"Hello world\";", 100, Vector(Token(TokenType.Id, "x"), Token(TokenType.Assign), Token(TokenType.String, "Hello world"), Token(TokenType.Semicolon), Token(TokenType.Eof))),
+      (" x = \"Hello world\";", 3, Vector(Token(TokenType.Id, "x"), Token(TokenType.Assign), Token(TokenType.String, "Hello world")))
     )
 
   test("Correct token sequence is returned after performing token lookup") {

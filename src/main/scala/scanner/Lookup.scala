@@ -1,7 +1,7 @@
 package scanner
 
 import scanner.enumerations.TokenType
-import scanner.enumerations.TokenType.{Comma, Else, Eof, Error, Id, If, LeftBrace, LeftParen, Num, Op_Assign, Op_Equal, Op_LessThan, Op_Minus, Op_MoreThan, Op_Plus, Print, Read, RightBrace, RightParen, Semicolon, String, While}
+import scanner.enumerations.TokenType.{Comma, Else, Eof, Error, Id, If, LeftBrace, LeftParen, Num, Assign, Op_Equal, Op_LessThan, Op_Minus, Op_MoreThan, Op_Plus, Print, Read, RightBrace, RightParen, Semicolon, String, While}
 import scanner.models.Token
 
 import scala.util.matching.Regex
@@ -21,7 +21,7 @@ object Lookup {
 
   val operationsLookup: Map[String, Token] = Map(
     ("==", Token(TokenType.Op_Equal)),
-    ("=", Token(TokenType.Op_Assign)),
+    ("=", Token(TokenType.Assign)),
     ("<", Token(TokenType.Op_LessThan)),
     (">", Token(TokenType.Op_MoreThan)),
     ("+", Token(TokenType.Op_Plus)),
@@ -45,7 +45,7 @@ object Lookup {
                                 tokenType == While | tokenType == Read |
                                 tokenType == Print => tokenType.toString.length
     case Token(Op_Equal, _) => twoChar
-    case Token(Op_Assign, _) | Token(Op_LessThan, _) |
+    case Token(Assign, _) | Token(Op_LessThan, _) |
          Token(Op_MoreThan, _) | Token(Op_Plus, _) |
          Token(Op_Minus, _) => oneChar
     case Token(LeftParen, _) | Token(RightParen, _) |
@@ -60,7 +60,7 @@ object Lookup {
     case Num => "[0-9]+".r
     case String => "\"[^\"\\n]*\"".r
     case Op_Equal => "==".r
-    case Op_Assign => "=[^=]".r
+    case Assign => "=[^=]".r
     case Op_LessThan => "<".r
     case Op_MoreThan => ">".r
     case Op_Plus => "\\+".r

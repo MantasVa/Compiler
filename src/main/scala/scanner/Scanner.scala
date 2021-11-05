@@ -6,10 +6,13 @@ import scanner.enumerations.{ScanMode, TokenType}
 import scanner.models.Token
 
 import scala.annotation.tailrec
+import scala.util.matching.Regex.MatchIterator
 
 case class Scanner(reader: Readable) extends Scannable {
 
   private val tokenSeparationRegex = "( )+|[(=<>;]".r
+  private val stringStartWhitespaceRegex = "^\\s+"
+  private val quotationMarkRegex = "\"".r
   private val scannerSteps: Seq[String => Option[Token]] = Seq(
     source => searchForReservedWord(source),
     source => searchForOperation(source),
@@ -29,13 +32,16 @@ case class Scanner(reader: Readable) extends Scannable {
 
     val tokensOption =
       sourceCodeOption.flatMap(source => {
-      val trimmedSource = source.trim
+      val trimmedSource = source.replaceAll(stringStartWhitespaceRegex, "")
       val trimmedBlankSpaceCount = source.length - trimmedSource.length
 
       val matchIterator = tokenSeparationRegex.findAllIn(trimmedSource)
+      val quotationMatchesCount = quotationMarkRegex.findAllIn(trimmedSource).size
       val eofReached = source.length < readCount
 
-      if (matchIterator.size > scanCount || eofReached) {
+      def matchSizeIsEqualNumber(matchCount: Int): Boolean = matchCount == 0 || matchCount % 2 == 0
+
+      if ((matchIterator.size > scanCount && matchSizeIsEqualNumber(quotationMatchesCount)) || eofReached) {
         val tokens = getTokens(scanCount, trimmedSource, Vector(), eofReached)
 
         if (scanMode == ScanMode.Consume) {

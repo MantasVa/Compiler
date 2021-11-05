@@ -25,7 +25,7 @@ class getTokenLengthInSourceTests extends AnyFunSuite {
       (Token(TokenType.Num, "123456"), 6),
 
       (Token(TokenType.Op_Equal), 2),
-      (Token(TokenType.Op_Assign), 1),
+      (Token(TokenType.Assign), 1),
       (Token(TokenType.Op_LessThan), 1),
       (Token(TokenType.Op_MoreThan), 1),
       (Token(TokenType.Op_Plus), 1),

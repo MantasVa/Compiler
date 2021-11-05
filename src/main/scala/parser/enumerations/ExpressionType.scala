@@ -6,4 +6,5 @@ object ExpressionType{
   case object Integer extends ExpressionType
   case object Boolean extends ExpressionType
   case object String extends ExpressionType
+  case object Unknown extends ExpressionType
 }
